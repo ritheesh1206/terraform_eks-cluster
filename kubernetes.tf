@@ -13,12 +13,10 @@ terraform {
 }
 
 data "terraform_remote_state" "eks" {
-  backend = "s3"
+  backend = "local"
 
   config = {
-    bucket = "backenedteraform1"
-    key    = "eks/terraform.tfstate"
-    region = "us-east-1"
+    path = "/home/ubuntu/terra/learn-terraform-provision-eks-cluster/terraform.tfstate"
   }
 }
 
