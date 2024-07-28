@@ -68,12 +68,12 @@ resource "kubernetes_deployment" "nginx" {
       }
       spec {
         container {
-          image = "docker.io/iyappansam97/myreactapp"
+          image = "public.ecr.aws/x7x4j4i2/project_web_app:latest"
           name  = "example"
           image_pull_policy = "Always"  // Ensure always pulling the latest image
 
           port {
-            container_port = 3000
+            container_port = 80
           }    
         }
       }
@@ -91,7 +91,7 @@ resource "kubernetes_service" "nginx" {
     }
     port {
       port        = 80
-      target_port = 3000
+      target_port = 80
     }
 
     type = "LoadBalancer"
