@@ -15,7 +15,6 @@ resource "aws_subnet" "example" {
   availability_zone = "us-east-1a"
 }
 
-# Define the EKS cluster and managed node groups
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   version         = "~> 18.0"  # Adjust to the latest version if needed
@@ -25,18 +24,17 @@ module "eks" {
   subnets         = [aws_subnet.example.id]
 
   node_groups = {
-    node_group_one = {
-      desired_capacity = 2
-      max_capacity     = 3
-      min_capacity     = 1
-      instance_types   = ["t3.small"]
-    }
-    node_group_two = {
-      desired_capacity = 1
-      max_capacity     = 2
-      min_capacity     = 1
-      instance_types   = ["t3.small"]
-    }
+  node_group_one = {
+    desired_capacity = 2
+    max_capacity     = 3
+    min_capacity     = 1
+    instance_types   = ["t3.small"]
+  }
+  node_group_two = {
+    desired_capacity = 1
+    max_capacity     = 2
+    min_capacity     = 1
+    instance_types   = ["t3.small"]
   }
 }
 
